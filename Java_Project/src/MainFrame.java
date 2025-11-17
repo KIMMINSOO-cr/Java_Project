@@ -32,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblPW = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         txtPW = new javax.swing.JTextField();
+        정진수 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,6 +41,8 @@ public class MainFrame extends javax.swing.JFrame {
         lblID.setText("ID");
 
         lblPW.setText("PASSWORD");
+
+        정진수.setText("정진수");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,7 +61,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPW, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(정진수)))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +80,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPW)
                     .addComponent(txtPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(정진수)
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,5 +119,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblPW;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPW;
+    private javax.swing.JLabel 정진수;
     // End of variables declaration//GEN-END:variables
 }
