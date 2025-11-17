@@ -7,31 +7,15 @@
  *
  * @author kms03
  */
-public class MainFrame extends javax.swing.JFrame {
+public class SignUp extends javax.swing.JFrame {
     
-    String loginId;
-    String loginName;
-    String loginUserType;
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SignUp.class.getName());
 
     /**
-     * Creates new form MainFrame
+     * Creates new form SignUp
      */
-    public MainFrame() {
+    public SignUp() {
         initComponents();
-        
-        
-    }
-    
-    public MainFrame(String id, String name, String userType){
-        
-        this.loginId = id;
-        this.loginName = name;
-        this.loginUserType = userType;
-        
-        setTitle("환영합니다, " + this.loginName + "님 (" + this.loginUserType + " 등급)");
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -49,11 +33,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SignUp().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
