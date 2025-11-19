@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-// 필요한 클래스들을 import 합니다.
 import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.sql.SQLException; // SQLException 임포트 추가
 
-// 클래스 이름은 Login.java로 합니다.
 /**
  *
  * @author kms03
@@ -24,7 +22,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setTitle("학사 정보 관리 시스템 - 로그인");
-        setLocationRelativeTo(null); // 창을 화면 가운데에 띄우기
+        setLocationRelativeTo(null); 
     }
 
     /**
@@ -66,27 +64,26 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLoginId, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(txtLoginPassword))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGoToSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtLoginId, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(txtLoginPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGoToSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(120, 120, 120))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLoginId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin))
@@ -110,7 +107,7 @@ public class Login extends javax.swing.JFrame {
             return;
         }
 
-        // STUDENT 테이블에서 id, pw가 일치하는 학생의 이름과 유형(권한)을 가져옴
+        
         String sql = "SELECT name, user_type FROM STUDENT WHERE student_id = '" + id + "' AND password = '" + pw + "'";
 
         try {
@@ -118,26 +115,26 @@ public class Login extends javax.swing.JFrame {
             DBM.DB_rs = DBM.DB_stmt.executeQuery(sql);
 
             if (DBM.DB_rs.next()) {
-                // 3. 로그인 성공
+                
                 String name = DBM.DB_rs.getString("name");
                 String userType = DBM.DB_rs.getString("user_type"); // 예: "student" 또는 "admin"
 
                 JOptionPane.showMessageDialog(this, name + "님, 환영합니다!");
                 
-                // 4. MainFrame 창을 엽니다. (이때 로그인한 사용자 정보를 넘겨줍니다)
+                
                 new MainFrame(id, name, userType).setVisible(true);
                 
-                // 5. 현재 로그인 창을 닫습니다.
+                
                 this.dispose(); 
 
             } else {
-                // 3. 로그인 실패
+               
                 JOptionPane.showMessageDialog(this, "학번 또는 비밀번호가 일치하지 않습니다.", "로그인 실패", JOptionPane.ERROR_MESSAGE);
             }
             
             DBM.dbClose(); 
             
-        } catch (IOException | SQLException e) { // 두 가지 예외 동시 처리
+        } catch (IOException | SQLException e) { 
             JOptionPane.showMessageDialog(this, "DB 오류: " + e.getMessage());
             e.printStackTrace();
         }

@@ -2,12 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.sql.SQLException;
 /**
  *
  * @author kms03
  */
 public class SignUp extends javax.swing.JFrame {
+    DB_MAN DBM = new DB_MAN();
+    
+    
+    boolean isIdChecked = false;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SignUp.class.getName());
 
@@ -16,6 +22,10 @@ public class SignUp extends javax.swing.JFrame {
      */
     public SignUp() {
         initComponents();
+        setTitle("학사 정보 시스템 - 회원가입");
+        setLocationRelativeTo(null); // 화면 중앙 배치
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -27,21 +37,211 @@ public class SignUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
+        btnCheckId = new javax.swing.JButton();
+        txtSignUpPassword = new javax.swing.JPasswordField();
+        txtSignUpId = new javax.swing.JTextField();
+        txtSignUpPasswordCheck = new javax.swing.JPasswordField();
+        txtSignUpName = new javax.swing.JTextField();
+        txtSignUpMajor = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextField1.setFont(new java.awt.Font("맑은 고딕", 0, 24)); // NOI18N
+        jTextField1.setText("회원가입");
+
+        btnCheckId.setText("중복 확인");
+        btnCheckId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckIdActionPerformed(evt);
+            }
+        });
+
+        txtSignUpId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSignUpIdKeyTyped(evt);
+            }
+        });
+
+        jLabel1.setText("아이디");
+
+        jLabel2.setText("비밀번호");
+
+        jLabel3.setText("비밀번호 확인");
+
+        jLabel4.setText("성명");
+
+        jLabel5.setText("학과");
+
+        jButton2.setText("회원가입");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtSignUpMajor, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addGap(74, 74, 74)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtSignUpId)
+                                .addGap(74, 74, 74)
+                                .addComponent(btnCheckId)))
+                        .addGap(55, 55, 55))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtSignUpPasswordCheck, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSignUpPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSignUpName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSignUpId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCheckId)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSignUpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSignUpPasswordCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSignUpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSignUpMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jButton2))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCheckIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckIdActionPerformed
+        // TODO add your handling code here:
+        String id = txtSignUpId.getText().trim(); 
+
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "아이디를 입력해주세요.");
+            return;
+        }
+
+
+        String sql = "SELECT * FROM STUDENT WHERE student_id = '" + id + "'";
+
+        try {
+            DBM.dbOpen(); 
+            DBM.DB_rs = DBM.DB_stmt.executeQuery(sql); 
+
+            if (DBM.DB_rs.next()) {
+
+                JOptionPane.showMessageDialog(this, "이미 사용 중인 아이디입니다.", "중복 확인", JOptionPane.WARNING_MESSAGE);
+                txtSignUpId.setText(""); 
+                isIdChecked = false;     
+            } else {
+
+                JOptionPane.showMessageDialog(this, "사용 가능한 아이디입니다.");
+                isIdChecked = true;      // 검사 통과 성공
+
+            }
+            
+            DBM.dbClose(); 
+
+        } catch (Exception e) {
+            System.out.println("중복확인 오류: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCheckIdActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String id = txtSignUpId.getText().trim();
+        String pw = new String(txtSignUpPassword.getPassword()).trim();
+        String pwCheck = new String(txtSignUpPasswordCheck.getPassword()).trim();
+        String name = txtSignUpName.getText().trim();
+        String major = txtSignUpMajor.getText().trim();
+        String userType = "student"; 
+
+
+        if (id.isEmpty() || pw.isEmpty() || name.isEmpty() || major.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "모든 항목을 입력해주세요.");
+            return;
+        }
+
+
+        if (isIdChecked == false) {
+            JOptionPane.showMessageDialog(this, "아이디 중복확인을 해주세요.");
+            return;
+        }
+
+
+        if (!pw.equals(pwCheck)) {
+            JOptionPane.showMessageDialog(this, "비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
+
+
+        String sql = "INSERT INTO STUDENT VALUES ('" + id + "', '" + pw + "', '" + name + "', '" + major + "', '" + userType + "')";
+
+        try {
+            DBM.dbOpen(); 
+            DBM.DB_stmt.executeUpdate(sql); 
+            DBM.dbClose(); 
+
+ 
+            JOptionPane.showMessageDialog(this, "회원가입이 완료되었습니다!\n로그인해주세요.");
+            
+
+            this.dispose();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "가입 실패 (DB 오류): " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtSignUpIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSignUpIdKeyTyped
+        // TODO add your handling code here:
+        isIdChecked = false;
+    }//GEN-LAST:event_txtSignUpIdKeyTyped
 
     /**
      * @param args the command line arguments
@@ -69,5 +269,18 @@ public class SignUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheckId;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtSignUpId;
+    private javax.swing.JTextField txtSignUpMajor;
+    private javax.swing.JTextField txtSignUpName;
+    private javax.swing.JPasswordField txtSignUpPassword;
+    private javax.swing.JPasswordField txtSignUpPasswordCheck;
     // End of variables declaration//GEN-END:variables
 }
